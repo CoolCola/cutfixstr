@@ -3,14 +3,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
 </head>
 <body>
-	<div id="eg1">截取字符串，超过20个显示为...，这是一个简单的例子，遮罩多喝点大家觉得分基地反击。</div>
+	<div id="eg1">截取字符串aaa好，超过20个显示为...，这是一个简单的例子，遮罩多喝点大家觉得分基地反击。</div>
 	<script type="text/javascript">
-		var eg1Txt = document.getElementById("eg1").innerHtml;
+
+		var eg1Txt = document.getElementById("eg1").innerHTML;
 		eg1Txt = cutFixStr(eg1Txt,20,"...");
+		document.getElementById("eg1").innerHTML = eg1Txt;
 		function cutFixStr(str,length,replaceStr){
-			
+			var str_len = _length(str);
+			alert(str_len);
+			function _length(str){
+				var reg = new RegExp("[\u2E80-\u9FFF]","g");
+				var str_len = str.replace(reg,"**").length;
+				return str_len;
+			}
 		}
 	</script>
 </body>
